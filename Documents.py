@@ -35,10 +35,7 @@ class Document():
     
     def get_date(self):
         return self.date
-    
-    def get_source(self):
-        return self.source
-        
+     
     def get_text(self):
         return self.text
     
@@ -83,7 +80,6 @@ class Corpus():
         self.naut = 0
             
     def add_doc(self, doc):
-        
         self.collection[self.ndoc] = doc
         self.id2doc[self.ndoc] = doc.get_title()
         self.ndoc += 1
@@ -95,7 +91,6 @@ class Corpus():
             self.add_aut(aut_name,doc)
             
     def add_aut(self, aut_name,doc):
-        
         aut_temp = Author(aut_name)
         aut_temp.add(doc)
         
@@ -120,21 +115,7 @@ class Corpus():
     
     def __repr__(self):
         return self.name
-
-    def sort_title(self,nreturn=None):
-        if nreturn is None:
-            nreturn = self.ndoc
-        return [self.collection[k] for k, v in sorted(self.collection.items(), key=lambda item: item[1].get_title())][:(nreturn)]
-
-    def sort_date(self,nreturn):
-        if nreturn is None:
-            nreturn = self.ndoc
-        return [self.collection[k] for k, v in sorted(self.collection.items(), key=lambda item: item[1].get_date(), reverse=True)][:(nreturn)]
-    
-    def save(self,file):
-            pickle.dump(self, open(file, "wb" ))
         
-
 
 ########### Création du corpus (Chaque élément = une instance de la classe Document)
 # Remarques : 
